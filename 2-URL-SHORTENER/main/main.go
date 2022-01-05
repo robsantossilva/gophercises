@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/robsantossilva/gophercises/urlshort"
+	"github.com/robsantossilva/gophercises/urlshort/main/boltdb"
 )
 
 func main() {
@@ -26,22 +27,19 @@ func main() {
 	}
 
 	mux := defaultMux()
-
 	// Build the MapHandler using the mux as the fallback
-	pathsToUrls := map[string]string{
-		"/urlshort-godoc": "https://godoc.org/github.com/gophercises/urlshort",
-		"/yaml-godoc":     "https://godoc.org/gopkg.in/yaml.v2",
+
+	// pathsToUrls := map[string]string{
+	// 	"/urlshort-godoc": "https://godoc.org/github.com/gophercises/urlshort",
+	// 	"/yaml-godoc":     "https://godoc.org/gopkg.in/yaml.v2",
+	// }
+	pathsToUrls := map[string]string{}
+	err = boltdb.GetPathsUrls(&pathsToUrls)
+	if err != nil {
+		log.Fatal(err)
 	}
 	mapHandler := urlshort.MapHandler(pathsToUrls, mux)
 
-	// Build the YAMLHandler using the mapHandler as the
-	// fallback
-	// 	yaml := `
-	// - path: /urlshort
-	//   url: https://github.com/gophercises/urlshort
-	// - path: /urlshort-final
-	//   url: https://github.com/gophercises/urlshort/tree/solution
-	// `
 	YAMLHandler, err := urlshort.YAMLHandler(yamlFileByte, mapHandler)
 	if err != nil {
 		panic(err)
