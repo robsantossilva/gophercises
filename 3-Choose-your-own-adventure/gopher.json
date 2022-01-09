@@ -1,5 +1,6 @@
 {
     "intro": {
+      "is-first-chapter": true,
       "title": "The Little Blue Gopher",
       "story": [
         "Once upon a time, long long ago, there was a little blue gopher. Our little blue friend wanted to go on an adventure, but he wasn't sure where to go. Will you go on an adventure with him?",
@@ -18,6 +19,7 @@
       ]
     },
     "new-york": {
+      "is-first-chapter": false,
       "title": "Visiting New York",
       "story": [
         "Upon arriving in New York you and your furry travel buddy first attempt to hail a cab. Unfortunately nobody wants to give a ride to someone with a \"pet\". They kept saying something about shedding, as if gophers shed.",
@@ -38,6 +40,7 @@
       ]
     },
     "debate": {
+      "is-first-chapter": false,
       "title": "The Great Debate",
       "story": [
         "After a bit everyone settles down the two people on stage begin having a debate. You don't recall too many specifics, but for some reason you have a feeling you are supposed to pick sides."
@@ -58,6 +61,7 @@
       ]
     },
     "sean-kelly": {
+      "is-first-chapter": false,
       "title": "Exit Stage Left",
       "story": [
         "As you begin walking up to the fox-man you hear him introduce himself as Sean Kelly. While waiting in line you decide to do a little research to see what types of work Sean is into.",
@@ -73,6 +77,7 @@
       ]
     },
     "mark-bates": {
+      "is-first-chapter": false,
       "title": "Costume Time",
       "story": [
         "After talking with the wannabe superhero for a while you come to learn that his name is Mark Bates, and aside from his costume obsession he seems like a nice enough guy.",
@@ -88,6 +93,7 @@
       ]
     },
     "denver": {
+      "is-first-chapter": false,
       "title": "Hockey and Ski Slopes",
       "story": [
         "You arrive in Denver and start your trip by attending a hockey game. The Avalanche had a rough season last year, but your gopher buddy is hopeful that they will do better this year. He also explains that he is tired of hearing about \"Two time Stanley Cup champion Phil Kessel.\" You suspect that he is still a little salty about the Penguins beating the San Jose Sharks in the Stanley Cup, but you decide to give him a break.",
@@ -103,6 +109,7 @@
       ]
     },
     "home": {
+      "is-first-chapter": false,
       "title": "Home Sweet Home",
       "story": [
         "Your little gopher buddy thanks you for taking him on an adventure. Perhaps next year you can look into travelling abroad - you have both heard that gophers are all the rage in China."
