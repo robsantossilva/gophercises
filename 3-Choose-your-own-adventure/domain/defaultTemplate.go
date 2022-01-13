@@ -1,60 +1,14 @@
-package main
+package domain
 
-import (
-	"flag"
-	"fmt"
-	"html/template"
-	"log"
-	"net/http"
-	"os"
-	"strings"
+import "html/template"
 
-	storyCyoa "github.com/robsantossilva/gophercises/cyoa/domain"
-)
-
-var initialChapter string
-
-func main() {
-	port := flag.Int("port", 3000, "the port to start the CYOA web application on")
-
-	filename := flag.String("file", "gopher.json", "the JSON file with the CYOA story")
-	flag.Parse()
-	fmt.Printf("Using the story in %s.\n", *filename)
-
-	f, err := os.Open(*filename)
-	if err != nil {
-		panic(err)
-	}
-
-	story, err := storyCyoa.JsonStory(f)
-	if err != nil {
-		panic(err)
-	}
-	initialChapter = story.FirstChapter
-
-	tpl := template.Must(template.New("").Parse(storyTmpl))
-
-	h := storyCyoa.NewHandler(story,
-		storyCyoa.WithTemplate(tpl),
-		storyCyoa.WithPathFunc(pathFn),
-	)
-
-	mux := http.NewServeMux()
-	mux.Handle("/story/", h)
-
-	fmt.Printf("Starting the rsever at: %d\n", *port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), mux))
+func init() {
+	tpl = template.Must(template.New("").Parse(defaultHandlerTmpl))
 }
 
-func pathFn(r *http.Request) string {
-	path := strings.TrimSpace(r.URL.Path)
-	if path == "/story" || path == "/story/" {
-		path = "/story/" + initialChapter
-	}
-	return path[len("/story/"):]
-}
+var tpl *template.Template
 
-var storyTmpl = `
+var defaultHandlerTmpl = `
 <!DOCTYPE html>
 <html>
   <head>
@@ -70,7 +24,7 @@ var storyTmpl = `
       {{if .Options}}
         <ul>
         {{range .Options}}
-          <li><a href="/story/{{.Chapter}}">{{.Text}}</a></li>
+          <li><a href="/{{.Chapter}}">{{.Text}}</a></li>
         {{end}}
         </ul>
       {{else}}
