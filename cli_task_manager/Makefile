@@ -1,2 +1,2 @@
 build:
-	go build -o task
+	go build -o task && ./task

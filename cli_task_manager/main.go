@@ -5,22 +5,19 @@ import (
 	"os"
 	"path/filepath"
 
-	homedir "github.com/mitchellh/go-homedir"
 	"github.com/robsantossilva/gophercises-cli_task_manager/cmd"
 	"github.com/robsantossilva/gophercises-cli_task_manager/db"
 )
 
 func main() {
-	home, _ := homedir.Dir()
-	dbPath := filepath.Join(home, "tasks.db")
+	pwd, err := os.Getwd()
+	must(err)
+
+	// home, _ := homedir.Dir()
+	// fmt.Println(home)
+
+	dbPath := filepath.Join(pwd, "tasks.db")
 	must(db.Init(dbPath))
-
-	//db.CreateTask("Lavar a louça")
-
-	tasks, _ := db.AllTasks()
-
-	fmt.Println(tasks[0].Value)
-
 	must(cmd.RootCmd.Execute())
 }
 
