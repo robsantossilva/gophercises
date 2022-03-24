@@ -14,6 +14,13 @@ func main() {
 	home, _ := homedir.Dir()
 	dbPath := filepath.Join(home, "tasks.db")
 	must(db.Init(dbPath))
+
+	//db.CreateTask("Lavar a louça")
+
+	tasks, _ := db.AllTasks()
+
+	fmt.Println(tasks[0].Value)
+
 	must(cmd.RootCmd.Execute())
 }
 
