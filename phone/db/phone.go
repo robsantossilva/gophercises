@@ -29,8 +29,7 @@ func (db *DB) Close() error {
 
 func (db *DB) Seed() error {
 	for _, phone := range getPhoneNumbers() {
-		_, err := insertPhone(db.db, phone)
-		if err != nil {
+		if _, err := insertPhone(db.db, phone); err != nil {
 			return err
 		}
 	}
