@@ -43,3 +43,11 @@ func TestSort(t *testing.T) {
 		t.Error("Expected Ace of Spades first card. Received:", cards[0])
 	}
 }
+
+func TestMost(t *testing.T) {
+	cards := New(Sort(Most))
+	exp := Card{Rank: King, Suit: Heart}
+	if cards[0] != exp {
+		t.Error("Expected King of Hearts first card. Received:", cards[0])
+	}
+}
